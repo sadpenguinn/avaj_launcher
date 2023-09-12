@@ -64,6 +64,10 @@ public class Simulator {
 
         int cycles = totalCycles;
         while (cycles > 0) {
+            if (tower.aircraftPoolSize() <= 0) {
+                throw new PreconditionFailed("All aircrafts are landed");
+            }
+
             System.out.println("\nCYCLE " + (totalCycles - cycles + 1) + "/" + totalCycles);
             tower.changeWeather();
             --cycles;

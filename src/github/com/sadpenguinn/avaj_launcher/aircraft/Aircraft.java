@@ -19,10 +19,6 @@ public class Aircraft {
         this.coordinates = coordinates;
     }
 
-    public long getId() {
-        return this.id;
-    }
-
     protected boolean fly(HashMap<String, int[]> behaviourByWeather) throws PreconditionFailed {
         String weather = tower.getWeather(this.coordinates);
 

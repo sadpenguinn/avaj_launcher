@@ -4,27 +4,29 @@ import github.com.sadpenguinn.avaj_launcher.aircraft.Flyable;
 import github.com.sadpenguinn.avaj_launcher.exception.PreconditionFailed;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tower {
 
-    private Map<Long, Flyable> observers = new HashMap<>(); // TODO List<Flyable> observers = new ArrayList<>();
+    private List<Flyable> observers = new ArrayList<>();
 
     public void register(Flyable flyable) {
-        this.observers.put(flyable.getId(), flyable);
+        this.observers.add(flyable);
     }
 
     public void unregister(Flyable flyable) {
-        this.observers.remove(flyable.getId());
+        this.observers.remove(flyable);
     }
 
-    protected void conditionChanged() throws PreconditionFailed { // TODO: Удалить все эксепшены если нельзя
+    protected void conditionChanged() throws PreconditionFailed {
         List<Flyable> observersLinks = new ArrayList<>();
-        this.observers.forEach((k, v) -> observersLinks.add(v));
-        for (Flyable l : observersLinks) {
-            l.updateConditions();
+        this.observers.forEach((f) -> observersLinks.add(f));
+        for (Flyable f : observersLinks) {
+            f.updateConditions();
         }
+    }
+
+    public int aircraftPoolSize() {
+        return this.observers.size();
     }
 }

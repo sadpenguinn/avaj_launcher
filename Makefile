@@ -3,7 +3,7 @@ build:
 	javac @sources.txt
 
 run:
-	java -cp src github.com.sadpenguinn.avaj_launcher.Simulator "scenarios/scenario.txt"
+	java -cp src github.com.sadpenguinn.avaj_launcher.Simulator "scenarios/main.txt"
 
 results:
 	cat simulation.txt
